@@ -4,6 +4,9 @@ import java.net.ResponseCache;
 import java.util.Iterator;
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
+import ar.uba.fi.celdas7568.ciudad.ElementoCiudad;
 import ar.uba.fi.celdas7568.ciudad.Opinion;
 import ar.uba.fi.celdas7568.ciudad.Personalidad;
 import ar.uba.fi.celdas7568.ciudad.Zona;
@@ -21,6 +24,9 @@ public abstract class HeuristicaDeDecision {
 	public double transporte;
 	public double barrioExclusivo;
 	public double costo;
+	
+	public double max;
+	public double min;
 	
 	/**
 	 * En base al estado actual de la heuristica y la personalidad pasada como par�metro, genera una opini�n 
@@ -60,25 +66,36 @@ public abstract class HeuristicaDeDecision {
 	 * @param personalidad la personalidad del agente que realiza la evaluaci�n
 	 * @return
 	 */
-	public Zona evaluarOpiniones(List<Opinion> opiniones, Personalidad personalidad){
-		
-		Iterator<Opinion> o = opiniones.iterator();
-		double maximo = 0;
-		double resp;
-		while(o.hasNext()){
-			resp = o.next().respuesta;
-			if(resp > maximo){
-				maximo = resp;
-			}
-		}
+	public List<ElementoCiudad> evaluarOpiniones(List<Opinion> opiniones){
 		
 		Iterator<Opinion> iter = opiniones.iterator();
+		max = 0;
+		min = 99999999;
+		Zona mejor = null;
+		List<ElementoCiudad> elementos = Lists.newArrayList();
+		
 		while(iter.hasNext()){
+			
 			Opinion op = iter.next();
-			if(op.respuesta == maximo)
-				return op.getZona();
+			if(op.respuesta > max){
+				max = op.respuesta;
+				mejor = op.getZona();
+			}
+			if(op.respuesta < min){
+				min = op.respuesta;
+				//mejor = op.getZona();
+			}
+			elementos.add(new ElementoCiudad(op.getZona().posicionx,op.getZona().posiciony,op.respuesta));
+			//Aca en vez de los prints tendria que estar la llamada a un metodo de la clase
+			//Colorear ciudad que se ocupe de ir pintando segun alguna logica
+			System.out.println("Zona en X: " + op.getZona().posicionx + " Y: " + op.getZona().posiciony);
+			System.out.println("Tiene un puntaje de: " + op.respuesta);
+			
 		}
-		return null;
+		System.out.println("\n"+"La mejor zona tiene un puntaje de: " + max);
+		System.out.println("Esta ubicada en el punto X: " + mejor.posicionx + " Y: " + mejor.posiciony);
+		
+		return elementos;
 	}
 
 	/**

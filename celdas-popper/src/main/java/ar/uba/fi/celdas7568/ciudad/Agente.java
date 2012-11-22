@@ -11,11 +11,12 @@ public class Agente {
 	private Personalidad personalidad;
 	private HeuristicaDeDecision heuristicaDeDesicion;
 	
-	public Zona elegirZona(Ciudad ciudad){
+	public List<Opinion> elegirZona(Ciudad ciudad){
 		
-		Zona zonaElegida = null;
+		//Zona zonaElegida = null;
 		
-		while(zonaElegida == null){
+		//while(zonaElegida == null){
+			
 			List<Opinion> opiniones = Lists.newArrayList();
 			
 			for(Zona zona : ciudad){
@@ -23,14 +24,14 @@ public class Agente {
 				opiniones.add(opinionSobreZona);
 			}
 			
-			zonaElegida = heuristicaDeDesicion.evaluarOpiniones(opiniones, personalidad);
+			//zonaElegida = heuristicaDeDesicion.evaluarOpiniones(opiniones, personalidad);
 			
-			if(zonaElegida == null){
+			/*if(zonaElegida == null){
 				heuristicaDeDesicion.reconsiderarOpiniones(opiniones, personalidad);
 			}
-		}	
+		}*/	
 		
-		return zonaElegida;		
+		return opiniones;		
 	}
 	
 	public Personalidad getPersonalidad() {

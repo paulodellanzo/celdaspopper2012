@@ -1,6 +1,11 @@
 package ar.uba.fi.celdas7568.ciudad;
 
+import java.util.Iterator;
+import java.util.List;
+
+import ar.uba.fi.celdas7568.ciudad.Opinion;
 import ar.uba.fi.celdas7568.ciudad.heuristicas.HeuristicaDeDecision;
+
 import ar.uba.fi.celdas7568.ciudad.heuristicas.HeuristicaSoltero;
 
 public class SimularAgentesMain {
@@ -9,34 +14,137 @@ public class SimularAgentesMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Hola mundo");
-		Agente soltero = new Agente();
-		Personalidad solteria = new Personalidad();
-		solteria.barrioExclusivo = 0;
-		solteria.costo = 0.5;
-		solteria.cultura = -0.75;
-		solteria.diversion = 1;
-		solteria.educacion = 0;
-		solteria.familiar = -0.5;
-		solteria.naturaleza = 0.5;
-		solteria.populoso = 0.75;
-		solteria.seguridad = -0.5;
-		solteria.tranquilo = -1;
-		solteria.transporte = 0.75;
-		soltero.setPersonalidad(solteria);
 		
-		HeuristicaDeDecision heusoltero = new HeuristicaSoltero();
-		soltero.setHeuristicaDeDesicion(heusoltero);
 		
-		Ciudad city = new Ciudad();
-		city.generarZonas();
+		int opcion = 1;
 		
-		Zona zonapreferidaSoltero = soltero.elegirZona(city);
 		
-		System.out.println("Valor elegido como el mejor:" +
-		"Punto X:" + zonapreferidaSoltero.posicionx + 
-		"Punto Y:" + zonapreferidaSoltero.posiciony );
-		
+		if (opcion == 1) {
+			System.out.println("Simulacion para Soltero");
+			Agente agente = new Agente();
+			Personalidad personalidad = new Personalidad();
+			personalidad.barrioExclusivo = 0;
+			personalidad.costo = 0.5;
+			personalidad.cultura = -0.75;
+			personalidad.diversion = 1;
+			personalidad.educacion = 0;
+			personalidad.familiar = -0.5;
+			personalidad.naturaleza = 0.5;
+			personalidad.populoso = 0.75;
+			personalidad.seguridad = -0.5;
+			personalidad.tranquilo = -1;
+			personalidad.transporte = 0.75;
+			agente.setPersonalidad(personalidad);
+
+			HeuristicaDeDecision heuristica = new HeuristicaSoltero();
+			agente.setHeuristicaDeDesicion(heuristica);
+
+			Ciudad city = new Ciudad();
+			city.generarZonas();
+
+			List<Opinion> opinionZonas = agente.elegirZona(city);
+			List<ElementoCiudad> elementos = agente.getHeuristicaDeDesicion()
+					.evaluarOpiniones(opinionZonas);
+			CreadorCiudad crea = new CreadorCiudad(elementos,
+					agente.getHeuristicaDeDesicion().max,
+					agente.getHeuristicaDeDesicion().min);
+			crea.crearCiudad();
+		}
+
+		if (opcion == 2) {
+			System.out.println("Simulacion para Pareja");
+			Agente agente = new Agente();
+			Personalidad personalidad = new Personalidad();
+			personalidad.barrioExclusivo = 0.5;
+			personalidad.costo = 0.25;
+			personalidad.cultura = 0.5;
+			personalidad.diversion = 0.5;
+			personalidad.educacion = -0.5;
+			personalidad.familiar = 0;
+			personalidad.naturaleza = 0.75;
+			personalidad.populoso = 1;
+			personalidad.seguridad = 0.5;
+			personalidad.tranquilo = -0.75;
+			personalidad.transporte = 0;
+			agente.setPersonalidad(personalidad);
+
+			HeuristicaDeDecision heuristica = new HeuristicaSoltero();
+			agente.setHeuristicaDeDesicion(heuristica);
+
+			Ciudad city = new Ciudad();
+			city.generarZonas();
+
+			List<Opinion> opinionZonas = agente.elegirZona(city);
+			List<ElementoCiudad> elementos = agente.getHeuristicaDeDesicion()
+					.evaluarOpiniones(opinionZonas);
+			CreadorCiudad crea = new CreadorCiudad(elementos,
+					agente.getHeuristicaDeDesicion().max,
+					agente.getHeuristicaDeDesicion().min);
+			crea.crearCiudad();
+		}
+		if (opcion == 3) {
+			System.out.println("Simulacion para Familia");
+			Agente agente = new Agente();
+			Personalidad personalidad = new Personalidad();
+			personalidad.barrioExclusivo = 1;
+			personalidad.costo = -0.5;
+			personalidad.cultura = 0;
+			personalidad.diversion = -0.25;
+			personalidad.educacion = 1;
+			personalidad.familiar = 1;
+			personalidad.naturaleza = 0.25;
+			personalidad.populoso = -0.5;
+			personalidad.seguridad = 0.75;
+			personalidad.tranquilo = 0.5;
+			personalidad.transporte = -0.25;
+			agente.setPersonalidad(personalidad);
+
+			HeuristicaDeDecision heuristica = new HeuristicaSoltero();
+			agente.setHeuristicaDeDesicion(heuristica);
+
+			Ciudad city = new Ciudad();
+			city.generarZonas();
+
+			List<Opinion> opinionZonas = agente.elegirZona(city);
+			List<ElementoCiudad> elementos = agente.getHeuristicaDeDesicion()
+					.evaluarOpiniones(opinionZonas);
+			CreadorCiudad crea = new CreadorCiudad(elementos,
+					agente.getHeuristicaDeDesicion().max,
+					agente.getHeuristicaDeDesicion().min);
+			crea.crearCiudad();
+		}
+
+		if (opcion == 4) {
+			System.out.println("Simulacion para Ancianos");
+			Agente agente = new Agente();
+			Personalidad personalidad = new Personalidad();
+			personalidad.barrioExclusivo = -0.5;
+			personalidad.costo = -0.25;
+			personalidad.cultura = 1;
+			personalidad.diversion = -1;
+			personalidad.educacion = -0.75;
+			personalidad.familiar = -0.5;
+			personalidad.naturaleza = 0.75;
+			personalidad.populoso = -0.75;
+			personalidad.seguridad = 0.5;
+			personalidad.tranquilo = 1;
+			personalidad.transporte = 0;
+			agente.setPersonalidad(personalidad);
+
+			HeuristicaDeDecision heuristica = new HeuristicaSoltero();
+			agente.setHeuristicaDeDesicion(heuristica);
+
+			Ciudad city = new Ciudad();
+			city.generarZonas();
+
+			List<Opinion> opinionZonas = agente.elegirZona(city);
+			List<ElementoCiudad> elementos = agente.getHeuristicaDeDesicion()
+					.evaluarOpiniones(opinionZonas);
+			CreadorCiudad crea = new CreadorCiudad(elementos,
+					agente.getHeuristicaDeDesicion().max,
+					agente.getHeuristicaDeDesicion().min);
+			crea.crearCiudad();
+		}
 	}
 
 }

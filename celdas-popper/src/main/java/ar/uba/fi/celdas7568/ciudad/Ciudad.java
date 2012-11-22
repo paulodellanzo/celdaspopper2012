@@ -19,8 +19,9 @@ public class Ciudad implements Iterable<Zona>{
 	
 	
 	public void agregarAgente(Agente agente){
-		Zona zonaElegida = agente.elegirZona(this);
-		agentes.put(zonaElegida, agente);		
+		//Zona zonaElegida = agente.elegirZona(this);
+		//agentes.put(zonaElegida, agente);
+		
 	}
 	
 	public void generarZonas(){
