@@ -1,8 +1,9 @@
 package ar.uba.fi.celdas7568.ciudad;
 
-public abstract class Opinion {
+public class Opinion {
 	
 	private Zona zona;
+	public double respuesta;
 
 	public Zona getZona() {
 		return zona;
