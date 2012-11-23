@@ -4,10 +4,13 @@ import java.util.Iterator;
 import java.util.List;
 
 import ar.uba.fi.celdas7568.ciudad.Opinion;
+import ar.uba.fi.celdas7568.ciudad.heuristicas.HeuristicaAncianos;
 import ar.uba.fi.celdas7568.ciudad.heuristicas.HeuristicaDeDecision;
+import ar.uba.fi.celdas7568.ciudad.heuristicas.HeuristicaFamilia;
+import ar.uba.fi.celdas7568.ciudad.heuristicas.HeuristicaPareja;
 
 import ar.uba.fi.celdas7568.ciudad.heuristicas.HeuristicaSoltero;
-
+import java.util.*;
 public class SimularAgentes {
 
 	/**
@@ -16,7 +19,26 @@ public class SimularAgentes {
 	public static List<ElementoCiudad> simular() {
 		
 		
-		int opcion = 1; //Extremadamente rústico
+		int opcion = 1; //Extremadamente rustico
+		
+		//Descomentar si se quiere agregar input de usuario
+		
+		/*
+		System.out.print( "Elija opcion: " );
+
+	    Scanner scanner = new Scanner( System.in );
+
+        // Read a line of text from the user.
+        String input = scanner.nextLine();
+
+        // Display the input back to the user.
+        System.out.println( "input = " + input );
+
+        int number = Integer.parseInt( input );  // converts a String into an int value
+
+		opcion = number;
+		*/
+		
 		
 		List<ElementoCiudad> elementos = null;
 		
@@ -66,7 +88,7 @@ public class SimularAgentes {
 			personalidad.transporte = 0;
 			agente.setPersonalidad(personalidad);
 
-			HeuristicaDeDecision heuristica = new HeuristicaSoltero();
+			HeuristicaDeDecision heuristica = new HeuristicaPareja();
 			agente.setHeuristicaDeDecision(heuristica);
 
 			Ciudad city = new Ciudad();
@@ -94,7 +116,7 @@ public class SimularAgentes {
 			personalidad.transporte = -0.25;
 			agente.setPersonalidad(personalidad);
 
-			HeuristicaDeDecision heuristica = new HeuristicaSoltero();
+			HeuristicaDeDecision heuristica = new HeuristicaFamilia();
 			agente.setHeuristicaDeDecision(heuristica);
 
 			Ciudad city = new Ciudad();
@@ -123,7 +145,7 @@ public class SimularAgentes {
 			personalidad.transporte = 0;
 			agente.setPersonalidad(personalidad);
 
-			HeuristicaDeDecision heuristica = new HeuristicaSoltero();
+			HeuristicaDeDecision heuristica = new HeuristicaAncianos();
 			agente.setHeuristicaDeDecision(heuristica);
 
 			Ciudad city = new Ciudad();
