@@ -8,16 +8,17 @@ import ar.uba.fi.celdas7568.ciudad.heuristicas.HeuristicaDeDecision;
 
 import ar.uba.fi.celdas7568.ciudad.heuristicas.HeuristicaSoltero;
 
-public class SimularAgentesMain {
+public class SimularAgentes {
 
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static List<ElementoCiudad> simular() {
 		
 		
-		int opcion = 1;
+		int opcion = 1; //Extremadamente rústico
 		
+		List<ElementoCiudad> elementos = null;
 		
 		if (opcion == 1) {
 			System.out.println("Simulacion para Soltero");
@@ -37,18 +38,15 @@ public class SimularAgentesMain {
 			agente.setPersonalidad(personalidad);
 
 			HeuristicaDeDecision heuristica = new HeuristicaSoltero();
-			agente.setHeuristicaDeDesicion(heuristica);
+			agente.setHeuristicaDeDecision(heuristica);
 
 			Ciudad city = new Ciudad();
 			city.generarZonas();
 
 			List<Opinion> opinionZonas = agente.elegirZona(city);
-			List<ElementoCiudad> elementos = agente.getHeuristicaDeDesicion()
-					.evaluarOpiniones(opinionZonas);
-			CreadorCiudad crea = new CreadorCiudad(elementos,
-					agente.getHeuristicaDeDesicion().max,
-					agente.getHeuristicaDeDesicion().min);
-			crea.crearCiudad();
+			elementos = agente.getHeuristicaDeDecision().evaluarOpiniones(opinionZonas);
+			elementos.add( new ElementoCiudad(-1,-1, agente.getHeuristicaDeDecision().max) );
+			elementos.add( new ElementoCiudad(-1,-1, agente.getHeuristicaDeDecision().min) );
 		}
 
 		if (opcion == 2) {
@@ -69,18 +67,15 @@ public class SimularAgentesMain {
 			agente.setPersonalidad(personalidad);
 
 			HeuristicaDeDecision heuristica = new HeuristicaSoltero();
-			agente.setHeuristicaDeDesicion(heuristica);
+			agente.setHeuristicaDeDecision(heuristica);
 
 			Ciudad city = new Ciudad();
 			city.generarZonas();
 
 			List<Opinion> opinionZonas = agente.elegirZona(city);
-			List<ElementoCiudad> elementos = agente.getHeuristicaDeDesicion()
-					.evaluarOpiniones(opinionZonas);
-			CreadorCiudad crea = new CreadorCiudad(elementos,
-					agente.getHeuristicaDeDesicion().max,
-					agente.getHeuristicaDeDesicion().min);
-			crea.crearCiudad();
+			elementos = agente.getHeuristicaDeDecision().evaluarOpiniones(opinionZonas);
+			elementos.add( new ElementoCiudad(-1,-1, agente.getHeuristicaDeDecision().max) );
+			elementos.add( new ElementoCiudad(-1,-1, agente.getHeuristicaDeDecision().min) );
 		}
 		if (opcion == 3) {
 			System.out.println("Simulacion para Familia");
@@ -100,18 +95,15 @@ public class SimularAgentesMain {
 			agente.setPersonalidad(personalidad);
 
 			HeuristicaDeDecision heuristica = new HeuristicaSoltero();
-			agente.setHeuristicaDeDesicion(heuristica);
+			agente.setHeuristicaDeDecision(heuristica);
 
 			Ciudad city = new Ciudad();
 			city.generarZonas();
 
 			List<Opinion> opinionZonas = agente.elegirZona(city);
-			List<ElementoCiudad> elementos = agente.getHeuristicaDeDesicion()
-					.evaluarOpiniones(opinionZonas);
-			CreadorCiudad crea = new CreadorCiudad(elementos,
-					agente.getHeuristicaDeDesicion().max,
-					agente.getHeuristicaDeDesicion().min);
-			crea.crearCiudad();
+			elementos = agente.getHeuristicaDeDecision().evaluarOpiniones(opinionZonas);
+			elementos.add( new ElementoCiudad(-1,-1, agente.getHeuristicaDeDecision().max) );
+			elementos.add( new ElementoCiudad(-1,-1, agente.getHeuristicaDeDecision().min) );
 		}
 
 		if (opcion == 4) {
@@ -132,19 +124,25 @@ public class SimularAgentesMain {
 			agente.setPersonalidad(personalidad);
 
 			HeuristicaDeDecision heuristica = new HeuristicaSoltero();
-			agente.setHeuristicaDeDesicion(heuristica);
+			agente.setHeuristicaDeDecision(heuristica);
 
 			Ciudad city = new Ciudad();
 			city.generarZonas();
 
 			List<Opinion> opinionZonas = agente.elegirZona(city);
-			List<ElementoCiudad> elementos = agente.getHeuristicaDeDesicion()
-					.evaluarOpiniones(opinionZonas);
-			CreadorCiudad crea = new CreadorCiudad(elementos,
-					agente.getHeuristicaDeDesicion().max,
-					agente.getHeuristicaDeDesicion().min);
-			crea.crearCiudad();
+			elementos = agente.getHeuristicaDeDecision().evaluarOpiniones(opinionZonas);			
+			elementos.add( new ElementoCiudad(-1,-1, agente.getHeuristicaDeDecision().max) );
+			elementos.add( new ElementoCiudad(-1,-1, agente.getHeuristicaDeDecision().min) );
+						
+			//new Frame( elementos, agente.getHeuristicaDeDecision().max, agente.getHeuristicaDeDecision().min );
+			
+			//CreadorCiudad crea = new CreadorCiudad(elementos,
+			//		agente.getHeuristicaDeDecision().max,
+			//		agente.getHeuristicaDeDecision().min);
+			//crea.crearCiudad();
 		}
+		
+		return elementos;
 	}
 
 }

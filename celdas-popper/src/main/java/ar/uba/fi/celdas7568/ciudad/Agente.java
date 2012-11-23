@@ -9,7 +9,7 @@ import com.google.common.collect.Lists;
 public class Agente {
 	
 	private Personalidad personalidad;
-	private HeuristicaDeDecision heuristicaDeDesicion;
+	private HeuristicaDeDecision heuristicaDeDecision;
 	
 	public List<Opinion> elegirZona(Ciudad ciudad){
 		
@@ -20,7 +20,7 @@ public class Agente {
 			List<Opinion> opiniones = Lists.newArrayList();
 			
 			for(Zona zona : ciudad){
-				Opinion opinionSobreZona = heuristicaDeDesicion.evaluarZona(zona, personalidad);
+				Opinion opinionSobreZona = heuristicaDeDecision.evaluarZona(zona, personalidad);
 				opiniones.add(opinionSobreZona);
 			}
 			
@@ -42,11 +42,11 @@ public class Agente {
 		this.personalidad = personalidad;
 	}
 
-	public HeuristicaDeDecision getHeuristicaDeDesicion() {
-		return heuristicaDeDesicion;
+	public HeuristicaDeDecision getHeuristicaDeDecision() {
+		return heuristicaDeDecision;
 	}
 
-	public void setHeuristicaDeDesicion(HeuristicaDeDecision heuristicaDeDesicion) {
-		this.heuristicaDeDesicion = heuristicaDeDesicion;
+	public void setHeuristicaDeDecision(HeuristicaDeDecision heuristicaDeDecision) {
+		this.heuristicaDeDecision = heuristicaDeDecision;
 	}
 }

@@ -55,7 +55,7 @@ public abstract class HeuristicaDeDecision {
 		dif += Math.pow((personalidad.tranquilo - zona.tranquilo) * this.tranquilo,2);
 		dif += Math.pow((personalidad.transporte - zona.transporte) * this.transporte,2);
 		
-		opinion.respuesta = dif; 
+		opinion.respuesta = 300-dif; 
 		return opinion;
 	}
 	/**
