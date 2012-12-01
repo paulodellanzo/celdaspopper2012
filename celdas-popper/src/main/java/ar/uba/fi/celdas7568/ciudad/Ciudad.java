@@ -5,11 +5,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
-import com.google.common.collect.Sets;
 
 public class Ciudad implements Iterable<Zona>{
 	
@@ -46,7 +44,6 @@ public class Ciudad implements Iterable<Zona>{
 				unaZona.tranquilo = aleatorio(r);
 				unaZona.transporte = aleatorio(r);
 				
-				//System.out.println("unaZona.barrioExclusivo"+unaZona.barrioExclusivo);
 				this.addZona(unaZona);
 			}
 		}

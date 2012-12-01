@@ -5,7 +5,6 @@ import java.awt.Toolkit;
 import java.awt.event.*;
 import java.util.*;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,18 +12,20 @@ import javax.swing.JLabel;
 
 public class Frame extends JFrame {
 	
+	private static final long serialVersionUID = 1L;
 	private int size = 40;
 	private Squares squares;
 	
+	Simulador simulador = new Simulador();
+	
 	public Frame() {
-		//super("Frame");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFrame.class.getResource("/ar/uba/fi/celdas7568/ciudad/Building-icon.png")));
 		setTitle("Análisis de zonas urbanas");
-		setBounds(100, 100, 600, 600);
+		setBounds(100, 100, 800, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JButton button = new JButton("Simular ciudad");
-		button.setBounds(225, 20, 150, 30);
+		button.setBounds(25, 20, 150, 30);
 		ActionListener actionListener = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				redibujarMapa();
@@ -32,6 +33,22 @@ public class Frame extends JFrame {
 		};		
 		button.addActionListener(actionListener);		
 		add(button);		
+		
+		JButton button2 = new JButton("Cambiar zona");
+		button2.setBounds(300, 20, 150, 30);
+		ActionListener actionListener2 = new ActionListener() {
+			public void actionPerformed(ActionEvent actionEvent) {
+				simulador.cambiarCiudad();
+			}
+		};		
+		button2.addActionListener(actionListener2);		
+		add(button2);		
+		
+		
+		JLabel label = new JLabel("Ciudad");
+		label.setBounds(520,100,50,50);
+		add(label);
+		
 		
 		for (int i = 0; i < 10; i++ ){
 			JLabel l = new JLabel( String.valueOf(i) );
@@ -50,19 +67,18 @@ public class Frame extends JFrame {
 
 	public void dibujarMapa(){
 		
-		List<ElementoCiudad> zonas = SimularAgentes.simular();
+		List<ElementoCiudad> zonas = simulador.simular();
 		double minPuntaje = zonas.get(zonas.size()-1).puntaje;
 		zonas.remove(zonas.size()-1);
 		double maxPuntaje = zonas.get(zonas.size()-1).puntaje;
 		zonas.remove(zonas.size()-1);		  
-		//System.out.println(" maxPuntaje = " + maxPuntaje + " minPuntaje = " + minPuntaje);	
+
 						
 		squares = new Squares();
 		getContentPane().add(squares);	
 				
 		for (ElementoCiudad zona: zonas) {      	    	  
 			double alfa =  ( zona.puntaje - minPuntaje) / (maxPuntaje - minPuntaje);
-			//System.out.println(" posX = " + zona.posX + "     posY = " + zona.posY + "    alfa = " + alfa + "     Puntaje = " + zona.puntaje);	    	  
 			Color c = new Color( (int) ( (1-alfa)*255.0 ), (int) (alfa*255.0), 0 );
 			squares.addSquare(100 + zona.posX * size, 100 + zona.posY * size, size, size, c);
 			
@@ -73,7 +89,7 @@ public class Frame extends JFrame {
 	}
 	
 	public void redibujarMapa(){
-		List<ElementoCiudad> zonas = SimularAgentes.simular();
+		List<ElementoCiudad> zonas = simulador.simular();
 		double minPuntaje = zonas.get(zonas.size()-1).puntaje;
 		zonas.remove(zonas.size()-1);
 		double maxPuntaje = zonas.get(zonas.size()-1).puntaje;

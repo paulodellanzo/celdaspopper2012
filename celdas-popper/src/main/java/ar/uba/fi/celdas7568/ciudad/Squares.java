@@ -1,5 +1,4 @@
 package ar.uba.fi.celdas7568.ciudad;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -9,7 +8,9 @@ import java.util.*;
 import javax.swing.*;
 
 public class Squares extends JPanel {
-	   private static final int PREF_W = 400;
+
+	private static final long serialVersionUID = 1L;
+	private static final int PREF_W = 400;
 	   private static final int PREF_H = PREF_W;
 	   private List<Rectangle> squares = new ArrayList<Rectangle>();
 	   private List<Rectangle> squareBorders = new ArrayList<Rectangle>();
