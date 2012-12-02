@@ -35,7 +35,7 @@ public class Frame extends JFrame {
 		button.addActionListener(actionListener);		
 		add(button);		
 		
-		JButton button2 = new JButton("Cambiar zona");
+		JButton button2 = new JButton("Cambiar ciudad");
 		button2.setBounds(200, 20, 150, 30);
 		ActionListener actionListener2 = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
