@@ -87,9 +87,6 @@ public class Agente {
 		opinion.respuesta = 0;
 		opinion.setZona(zona);
 		
-		//int cantidad_caracteristicas = 11;
-		
-		System.out.println(barrioExclusivoDeseeado);
 		double dif = Math.pow((barrioExclusivoDeseeado - zona.barrioExclusivo) * importanciaBarrioExclusivo,2);
 		dif += Math.pow((costoDeseado - zona.costo) * importanciaCosto,2);
 		dif += Math.pow((culturaDeseeado - zona.cultura) * importanciaCultura,2);
