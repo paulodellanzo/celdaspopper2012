@@ -7,18 +7,19 @@ import com.google.common.collect.Lists;
 
 public class Agente {
 	
+	public double coeficienteDeAprendizaje;
 	
-	public double cultura;
-	public double diversion;
-	public double seguridad;
-	public double educacion;
-	public double naturaleza;
-	public double populoso;
-	public double familiar;
-	public double tranquilo;
-	public double transporte;
-	public double barrioExclusivo;
-	public double costo;
+	public double culturaDeseeado;
+	public double diversionDeseeado;
+	public double seguridadDeseeado;
+	public double educacionDeseeado;
+	public double naturalezaDeseeado;
+	public double populosoDeseeado;
+	public double familiarDeseeado;
+	public double tranquiloDeseeado;
+	public double transporteDeseeado;
+	public double barrioExclusivoDeseeado;
+	public double costoDeseeado;
 	
 	public double importanciaCultura;
 	public double importanciaDiversion;
@@ -54,19 +55,21 @@ public class Agente {
 		opinion.setZona(zona);
 		
 		//int cantidad_caracteristicas = 11;
-		double dif = Math.pow((barrioExclusivo - zona.barrioExclusivo) * this.barrioExclusivo,2);
-		dif += Math.pow((costo - zona.costo) * importanciaCosto,2);
-		dif += Math.pow((cultura - zona.cultura) * importanciaCultura,2);
-		dif += Math.pow((diversion - zona.diversion) * importanciaDiversion,2);
-		dif += Math.pow((educacion - zona.educacion) * importanciaEducacion,2);
-		dif += Math.pow((familiar - zona.familiar) * importanciaFamiliar,2);
-		dif += Math.pow((naturaleza - zona.naturaleza) * importanciaNaturaleza,2);
-		dif += Math.pow((populoso - zona.populoso) * importanciaPopuloso,2);
-		dif += Math.pow((seguridad - zona.seguridad) * importanciaSeguridad,2);
-		dif += Math.pow((tranquilo - zona.tranquilo) * importanciaTranquilo,2);
-		dif += Math.pow((transporte - zona.transporte) * importanciaTransporte,2);
 		
-		opinion.respuesta = 300-dif; 
+		System.out.println(barrioExclusivoDeseeado);
+		double dif = Math.pow((barrioExclusivoDeseeado - zona.barrioExclusivo) * importanciaBarrioExclusivo,2);
+		dif += Math.pow((costoDeseeado - zona.costo) * importanciaCosto,2);
+		dif += Math.pow((culturaDeseeado - zona.cultura) * importanciaCultura,2);
+		dif += Math.pow((diversionDeseeado - zona.diversion) * importanciaDiversion,2);
+		dif += Math.pow((educacionDeseeado - zona.educacion) * importanciaEducacion,2);
+		dif += Math.pow((familiarDeseeado - zona.familiar) * importanciaFamiliar,2);
+		dif += Math.pow((naturalezaDeseeado - zona.naturaleza) * importanciaNaturaleza,2);
+		dif += Math.pow((populosoDeseeado - zona.populoso) * importanciaPopuloso,2);
+		dif += Math.pow((seguridadDeseeado - zona.seguridad) * importanciaSeguridad,2);
+		dif += Math.pow((tranquiloDeseeado - zona.tranquilo) * importanciaTranquilo,2);
+		dif += Math.pow((transporteDeseeado - zona.transporte) * importanciaTransporte,2);
+		
+		opinion.respuesta = 100-dif; 
 		return opinion;
 	}
 
@@ -91,8 +94,6 @@ public class Agente {
 				
 			}
 			elementos.add(new ElementoCiudad(op.getZona().posicionx,op.getZona().posiciony,op.respuesta));
-			//Aca en vez de los prints tendria que estar la llamada a un metodo de la clase
-			//Colorear ciudad que se ocupe de ir pintando segun alguna logica
 			System.out.println("Zona en X: " + op.getZona().posicionx + " Y: " + op.getZona().posiciony);
 			System.out.println("Tiene un puntaje de: " + op.respuesta);
 			
@@ -103,4 +104,22 @@ public class Agente {
 		return elementos;
 	}
 
+	public void aprender(Ciudad ciudad) {
+		
+		for(Zona zona : ciudad){
+			barrioExclusivoDeseeado = barrioExclusivoDeseeado*(1.0-coeficienteDeAprendizaje)+zona.barrioExclusivo*coeficienteDeAprendizaje;
+			costoDeseeado = costoDeseeado*(1.0-coeficienteDeAprendizaje)+zona.costo*coeficienteDeAprendizaje;
+			culturaDeseeado = culturaDeseeado*(1.0-coeficienteDeAprendizaje)+zona.cultura*coeficienteDeAprendizaje;
+			diversionDeseeado = diversionDeseeado*(1.0-coeficienteDeAprendizaje)+zona.diversion*coeficienteDeAprendizaje;
+			educacionDeseeado = educacionDeseeado*(1.0-coeficienteDeAprendizaje)+zona.educacion*coeficienteDeAprendizaje;
+			familiarDeseeado = familiarDeseeado*(1.0-coeficienteDeAprendizaje)+zona.familiar*coeficienteDeAprendizaje;
+			naturalezaDeseeado = naturalezaDeseeado*(1.0-coeficienteDeAprendizaje)+zona.naturaleza*coeficienteDeAprendizaje;
+			populosoDeseeado = populosoDeseeado*(1.0-coeficienteDeAprendizaje)+zona.populoso*coeficienteDeAprendizaje;
+			seguridadDeseeado = seguridadDeseeado*(1.0-coeficienteDeAprendizaje)+zona.seguridad*coeficienteDeAprendizaje;
+			tranquiloDeseeado = tranquiloDeseeado*(1.0-coeficienteDeAprendizaje)+zona.tranquilo*coeficienteDeAprendizaje;
+			transporteDeseeado = transporteDeseeado*(1.0-coeficienteDeAprendizaje)+zona.transporte*coeficienteDeAprendizaje;	
+			
+		}
+
+	}
 }

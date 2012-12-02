@@ -5,17 +5,19 @@ public class AgenteSoltero extends Agente {
 	
 	public AgenteSoltero(){
 		
-		barrioExclusivo = 2;
-		costo = 3;
-		cultura = 1;
-		diversion = 5;
-		educacion = 2;
-		familiar = 2;
-		naturaleza = 2;
-		populoso = 4;
-		seguridad = 3;
-		tranquilo = 2;
-		transporte = 4;
+		coeficienteDeAprendizaje = 0.005;
+		
+		barrioExclusivoDeseeado = 2;
+		costoDeseeado = 3;
+		culturaDeseeado = 1;
+		diversionDeseeado = 5;
+		educacionDeseeado = 2;
+		familiarDeseeado = 2;
+		naturalezaDeseeado = 2;
+		populosoDeseeado = 4;
+		seguridadDeseeado = 3;
+		tranquiloDeseeado = 2;
+		transporteDeseeado = 4;
 		
 		importanciaBarrioExclusivo = 0.1;
 		importanciaCosto = 0.5;
@@ -28,6 +30,18 @@ public class AgenteSoltero extends Agente {
 		importanciaSeguridad = 0.3;
 		importanciaTranquilo = 0;
 		importanciaTransporte = 0.7;
+		
+		importanciaBarrioExclusivo = 1;
+		importanciaCosto = 1;
+		importanciaCultura = 1;
+		importanciaDiversion = 1;
+		importanciaEducacion = 1;
+		importanciaFamiliar = 1;
+		importanciaNaturaleza = 1;
+		importanciaPopuloso = 1;
+		importanciaSeguridad = 1;
+		importanciaTranquilo = 1;
+		importanciaTransporte = 1;
 	}
 	
 }

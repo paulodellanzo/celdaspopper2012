@@ -7,17 +7,17 @@ public class AgenteAncianos extends Agente{
 	
 		public AgenteAncianos(){
 		
-		barrioExclusivo = 4;
-		costo = 3;
-		cultura = 5;
-		diversion = 1;
-		educacion = 1;
-		familiar = 5;
-		naturaleza = 4;
-		populoso = 1;
-		seguridad = 5;
-		tranquilo = 4;
-		transporte = 2;
+		barrioExclusivoDeseeado = 4;
+		costoDeseeado = 3;
+		culturaDeseeado = 5;
+		diversionDeseeado = 1;
+		educacionDeseeado = 1;
+		familiarDeseeado = 5;
+		naturalezaDeseeado = 4;
+		populosoDeseeado = 1;
+		seguridadDeseeado = 5;
+		tranquiloDeseeado = 4;
+		transporteDeseeado = 2;
 		
 		importanciaBarrioExclusivo = 0.1;
 		importanciaCosto = 1;
@@ -30,6 +30,8 @@ public class AgenteAncianos extends Agente{
 		importanciaSeguridad = 1;
 		importanciaTranquilo = 1;
 		importanciaTransporte = 0.1;
+		
+		coeficienteDeAprendizaje = 0.005;
 	}
 
 }

@@ -15,6 +15,7 @@ public class Frame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private int size = 40;
 	private Squares squares;
+	private JLabel labelAgente;
 	
 	Simulador simulador = new Simulador();
 	
@@ -35,7 +36,7 @@ public class Frame extends JFrame {
 		add(button);		
 		
 		JButton button2 = new JButton("Cambiar zona");
-		button2.setBounds(300, 20, 150, 30);
+		button2.setBounds(200, 20, 150, 30);
 		ActionListener actionListener2 = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				simulador.cambiarCiudad();
@@ -44,10 +45,21 @@ public class Frame extends JFrame {
 		button2.addActionListener(actionListener2);		
 		add(button2);		
 		
+		JButton button3 = new JButton("Cambiar agente");
+		button3.setBounds(375, 20, 150, 30);
+		ActionListener actionListener3 = new ActionListener() {
+			public void actionPerformed(ActionEvent actionEvent) {
+				labelAgente.setText("Agente:"+simulador.proximoAgente());
+			}
+		};		
+		button3.addActionListener(actionListener3);		
+		add(button3);
 		
-		JLabel label = new JLabel("Ciudad");
-		label.setBounds(520,100,50,50);
-		add(label);
+		
+		
+		labelAgente = new JLabel("Agente: Soltero");
+		labelAgente.setBounds(520,100,200,50);
+		add(labelAgente);
 		
 		
 		for (int i = 0; i < 10; i++ ){
@@ -99,7 +111,6 @@ public class Frame extends JFrame {
 		int i = 0;
 		for (ElementoCiudad zona: zonas) {      	    	  
 			double alfa =  ( zona.puntaje - minPuntaje) / (maxPuntaje - minPuntaje);
-			//System.out.println(" posX = " + zona.posX + "     posY = " + zona.posY + "    alfa = " + alfa + "     Puntaje = " + zona.puntaje);	    	  
 			Color c = new Color( (int) ( (1-alfa)*255.0 ), (int) (alfa*255.0), 0 );
 			squares.modifySquare(i, c);
 

@@ -51,12 +51,9 @@ public class Ciudad implements Iterable<Zona>{
 	}
 
 	public double aleatorio(Random r){
-		boolean pos = r.nextBoolean();
-		if(pos){
-			return r.nextDouble();
-		}
-		else
-			return (-1)*r.nextDouble();
+		Double aleatorio= r.nextDouble()*5;
+		return aleatorio;
+
 	}
 	public Iterator<Zona> iterator() {
 		return zonas.iterator();
