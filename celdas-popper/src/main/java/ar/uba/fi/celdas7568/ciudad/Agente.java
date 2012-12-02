@@ -19,7 +19,7 @@ public class Agente {
 	public double tranquiloDeseeado;
 	public double transporteDeseeado;
 	public double barrioExclusivoDeseeado;
-	public double costoDeseeado;
+	public double costoDeseado;
 	
 	public double importanciaCultura;
 	public double importanciaDiversion;
@@ -36,19 +36,52 @@ public class Agente {
 	public double max;
 	public double min;
 	
+	String historial = "";
+	
+	private void grabarHistorial() {
+		if(historial == ""){
+			historial = historial + "culturaDeseeado" +";";
+			historial = historial + "diversionDeseeado" +";";
+			historial = historial + "seguridadDeseeado" +";";
+			historial = historial + "educacionDeseeado" +";";
+			historial = historial + "naturalezaDeseeado" +";";
+			historial = historial + "populosoDeseeado" +";";
+			historial = historial + "familiarDeseeado" +";";
+			historial = historial + "tranquiloDeseeado" +";";
+			historial = historial + "transporteDeseeado" +";";
+			historial = historial + "barrioExclusivoDeseeado" +";";
+			historial = historial + "costoDeseado" +"\r\n";
+		}
 		
+		historial = historial + culturaDeseeado +";";
+		historial = historial + diversionDeseeado +";";
+		historial = historial + seguridadDeseeado +";";
+		historial = historial + educacionDeseeado +";";
+		historial = historial + naturalezaDeseeado +";";
+		historial = historial + populosoDeseeado +";";
+		historial = historial + familiarDeseeado +";";
+		historial = historial + tranquiloDeseeado +";";
+		historial = historial + transporteDeseeado +";";
+		historial = historial + barrioExclusivoDeseeado +";";
+		historial = historial + costoDeseado +"\r\n";
+		
+	}
+	
 	public List<Opinion> elegirZona(Ciudad ciudad){
 
-			List<Opinion> opiniones = Lists.newArrayList();
+		
+		grabarHistorial();
+		List<Opinion> opiniones = Lists.newArrayList();
 			
-			for(Zona zona : ciudad){
-				Opinion opinionSobreZona = evaluarZona(zona);
-				opiniones.add(opinionSobreZona);
-			}
+		for(Zona zona : ciudad){
+			Opinion opinionSobreZona = evaluarZona(zona);
+			opiniones.add(opinionSobreZona);
+		}
 			
 		return opiniones;		
 	}
 	
+
 	public Opinion evaluarZona(Zona zona){
 		Opinion opinion = new Opinion();
 		opinion.respuesta = 0;
@@ -58,7 +91,7 @@ public class Agente {
 		
 		System.out.println(barrioExclusivoDeseeado);
 		double dif = Math.pow((barrioExclusivoDeseeado - zona.barrioExclusivo) * importanciaBarrioExclusivo,2);
-		dif += Math.pow((costoDeseeado - zona.costo) * importanciaCosto,2);
+		dif += Math.pow((costoDeseado - zona.costo) * importanciaCosto,2);
 		dif += Math.pow((culturaDeseeado - zona.cultura) * importanciaCultura,2);
 		dif += Math.pow((diversionDeseeado - zona.diversion) * importanciaDiversion,2);
 		dif += Math.pow((educacionDeseeado - zona.educacion) * importanciaEducacion,2);
@@ -108,7 +141,7 @@ public class Agente {
 		
 		for(Zona zona : ciudad){
 			barrioExclusivoDeseeado = barrioExclusivoDeseeado*(1.0-coeficienteDeAprendizaje)+zona.barrioExclusivo*coeficienteDeAprendizaje;
-			costoDeseeado = costoDeseeado*(1.0-coeficienteDeAprendizaje)+zona.costo*coeficienteDeAprendizaje;
+			costoDeseado = costoDeseado*(1.0-coeficienteDeAprendizaje)+zona.costo*coeficienteDeAprendizaje;
 			culturaDeseeado = culturaDeseeado*(1.0-coeficienteDeAprendizaje)+zona.cultura*coeficienteDeAprendizaje;
 			diversionDeseeado = diversionDeseeado*(1.0-coeficienteDeAprendizaje)+zona.diversion*coeficienteDeAprendizaje;
 			educacionDeseeado = educacionDeseeado*(1.0-coeficienteDeAprendizaje)+zona.educacion*coeficienteDeAprendizaje;
@@ -121,5 +154,9 @@ public class Agente {
 			
 		}
 
+	}
+	
+	public String getHistorial(){
+		return historial;
 	}
 }

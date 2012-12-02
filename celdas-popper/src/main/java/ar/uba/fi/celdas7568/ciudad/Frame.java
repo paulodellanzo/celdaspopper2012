@@ -56,6 +56,17 @@ public class Frame extends JFrame {
 		add(button3);
 		
 		
+		JButton button4 = new JButton("Mostrar historial");
+		button4.setBounds(550, 20, 150, 30);
+		ActionListener actionListener4 = new ActionListener() {
+			public void actionPerformed(ActionEvent actionEvent) {
+				System.out.println(simulador.getAgente().getHistorial());
+			}
+		};		
+		button4.addActionListener(actionListener4);		
+		add(button4);
+		
+		
 		
 		labelAgente = new JLabel("Agente: Soltero");
 		labelAgente.setBounds(520,100,200,50);
@@ -125,6 +136,8 @@ public class Frame extends JFrame {
 	}
 
 	public static void main(String[] args) {
+		Ciudad c = new Ciudad();
+		c.importarZonas();
 		new Frame();
 	}
 }

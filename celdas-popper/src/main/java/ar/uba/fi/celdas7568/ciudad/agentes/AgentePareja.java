@@ -9,7 +9,7 @@ public class AgentePareja extends Agente{
 		coeficienteDeAprendizaje = 0.005;
 		
 		barrioExclusivoDeseeado = 4;
-		costoDeseeado = 3;
+		costoDeseado = 3;
 		culturaDeseeado = 3;
 		diversionDeseeado = 4;
 		educacionDeseeado = 2;

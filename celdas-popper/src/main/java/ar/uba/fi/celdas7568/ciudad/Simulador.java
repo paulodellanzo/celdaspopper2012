@@ -37,12 +37,12 @@ public class Simulador {
 	}
 	
 	public void cambiarCiudad(){
-		ciudad.generarZonas();
+		ciudad.importarZonas();
 	}
 	
 	public Simulador(){
 		ciudad = new Ciudad();
-		ciudad.generarZonas();
+		ciudad.importarZonas();
 		agenteActual=0;
 		proximoAgente();
 	}
@@ -62,7 +62,13 @@ public class Simulador {
 		return elementos;
 	}
 
+	public Agente getAgente() {
 
+		return agente;
+	}
+	
+
+	
 }
 
 

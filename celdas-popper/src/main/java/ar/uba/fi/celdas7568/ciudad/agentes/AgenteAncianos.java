@@ -8,7 +8,7 @@ public class AgenteAncianos extends Agente{
 		public AgenteAncianos(){
 		
 		barrioExclusivoDeseeado = 4;
-		costoDeseeado = 3;
+		costoDeseado = 3;
 		culturaDeseeado = 5;
 		diversionDeseeado = 1;
 		educacionDeseeado = 1;
