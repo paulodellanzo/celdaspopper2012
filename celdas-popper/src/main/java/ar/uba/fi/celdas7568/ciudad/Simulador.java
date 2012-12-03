@@ -1,5 +1,6 @@
 package ar.uba.fi.celdas7568.ciudad;
 
+
 import java.util.List;
 
 import ar.uba.fi.celdas7568.ciudad.Opinion;
@@ -36,8 +37,30 @@ public class Simulador {
 		
 	}
 	
+	public String nombreAgente(){
+		switch(agenteActual){
+		case 1: return "Soltero";
+		case 2: return "Pareja";
+		case 3: return "Familia";
+		case 4: return "Ancianos";
+		}
+		return "";
+	}
+	
 	public void cambiarCiudad(){
 		ciudad.importarZonas();
+	}
+	
+	public void escribirHistorial(String historial){
+		java.io.PrintStream ps;
+		try {
+			ps = new java.io.PrintStream( new java.io.FileOutputStream("historial.csv", true));
+			ps.println(historial);
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public Simulador(){

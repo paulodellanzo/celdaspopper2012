@@ -1,5 +1,6 @@
 package ar.uba.fi.celdas7568.ciudad;
 
+import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.List;
 
@@ -40,30 +41,30 @@ public class Agente {
 	
 	private void grabarHistorial() {
 		if(historial == ""){
-			historial = historial + "culturaDeseeado" +";";
-			historial = historial + "diversionDeseeado" +";";
-			historial = historial + "seguridadDeseeado" +";";
-			historial = historial + "educacionDeseeado" +";";
-			historial = historial + "naturalezaDeseeado" +";";
-			historial = historial + "populosoDeseeado" +";";
-			historial = historial + "familiarDeseeado" +";";
-			historial = historial + "tranquiloDeseeado" +";";
-			historial = historial + "transporteDeseeado" +";";
-			historial = historial + "barrioExclusivoDeseeado" +";";
-			historial = historial + "costoDeseado" +"\r\n";
+			historial = historial + "cultura" +";";
+			historial = historial + "diversion" +";";
+			historial = historial + "seguridad" +";";
+			historial = historial + "educacion" +";";
+			historial = historial + "naturaleza" +";";
+			historial = historial + "populoso" +";";
+			historial = historial + "familiar" +";";
+			historial = historial + "tranquilo" +";";
+			historial = historial + "transporte" +";";
+			historial = historial + "barrioExclusivo" +";";
+			historial = historial + "costo" +"\r\n";
 		}
-		
-		historial = historial + culturaDeseeado +";";
-		historial = historial + diversionDeseeado +";";
-		historial = historial + seguridadDeseeado +";";
-		historial = historial + educacionDeseeado +";";
-		historial = historial + naturalezaDeseeado +";";
-		historial = historial + populosoDeseeado +";";
-		historial = historial + familiarDeseeado +";";
-		historial = historial + tranquiloDeseeado +";";
-		historial = historial + transporteDeseeado +";";
-		historial = historial + barrioExclusivoDeseeado +";";
-		historial = historial + costoDeseado +"\r\n";
+		DecimalFormat df = new DecimalFormat("0.000"); 
+		historial = historial + df.format(culturaDeseeado) +";";
+		historial = historial + df.format(diversionDeseeado) +";";
+		historial = historial + df.format(seguridadDeseeado) +";";
+		historial = historial + df.format(educacionDeseeado) +";";
+		historial = historial + df.format(naturalezaDeseeado) +";";
+		historial = historial + df.format(populosoDeseeado) +";";
+		historial = historial + df.format(familiarDeseeado) +";";
+		historial = historial + df.format(tranquiloDeseeado) +";";
+		historial = historial + df.format(transporteDeseeado) +";";
+		historial = historial + df.format(barrioExclusivoDeseeado) +";";
+		historial = historial + df.format(costoDeseado) +"\r\n";
 		
 	}
 	

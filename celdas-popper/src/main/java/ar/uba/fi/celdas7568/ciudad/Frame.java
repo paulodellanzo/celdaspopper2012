@@ -61,6 +61,7 @@ public class Frame extends JFrame {
 		ActionListener actionListener4 = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				System.out.println(simulador.getAgente().getHistorial());
+				simulador.escribirHistorial(simulador.getAgente().getHistorial());
 			}
 		};		
 		button4.addActionListener(actionListener4);		
@@ -68,7 +69,7 @@ public class Frame extends JFrame {
 		
 		
 		
-		labelAgente = new JLabel("Agente: Soltero");
+		labelAgente = new JLabel("Agente:"+simulador.nombreAgente());
 		labelAgente.setBounds(520,100,200,50);
 		add(labelAgente);
 		

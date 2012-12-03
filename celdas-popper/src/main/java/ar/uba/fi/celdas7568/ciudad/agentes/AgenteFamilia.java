@@ -6,7 +6,7 @@ public class AgenteFamilia extends Agente{
 
 		public AgenteFamilia(){
 		
-		barrioExclusivoDeseeado = 1;
+		barrioExclusivoDeseeado = 2;
 		costoDeseado = 3;
 		culturaDeseeado = 3;
 		diversionDeseeado = 3;
@@ -18,7 +18,7 @@ public class AgenteFamilia extends Agente{
 		tranquiloDeseeado = 3;
 		transporteDeseeado = 1;
 		
-		importanciaBarrioExclusivo = 0.3;
+		importanciaBarrioExclusivo = 0.7;
 		importanciaCosto = 0.2;
 		importanciaCultura = 0.2;
 		importanciaDiversion = 0.8;
