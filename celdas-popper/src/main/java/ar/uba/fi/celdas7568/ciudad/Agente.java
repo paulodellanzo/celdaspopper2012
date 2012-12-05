@@ -10,16 +10,16 @@ public class Agente {
 	
 	public double coeficienteDeAprendizaje;
 	
-	public double culturaDeseeado;
-	public double diversionDeseeado;
-	public double seguridadDeseeado;
-	public double educacionDeseeado;
-	public double naturalezaDeseeado;
-	public double populosoDeseeado;
-	public double familiarDeseeado;
-	public double tranquiloDeseeado;
-	public double transporteDeseeado;
-	public double barrioExclusivoDeseeado;
+	public double culturaDeseado;
+	public double diversionDeseado;
+	public double seguridadDeseado;
+	public double educacionDeseado;
+	public double naturalezaDeseado;
+	public double populosoDeseado;
+	public double familiarDeseado;
+	public double tranquiloDeseado;
+	public double transporteDeseado;
+	public double barrioExclusivoDeseado;
 	public double costoDeseado;
 	
 	public double importanciaCultura;
@@ -53,17 +53,17 @@ public class Agente {
 			historial = historial + "barrioExclusivo" +";";
 			historial = historial + "costo" +"\r\n";
 		}
-		DecimalFormat df = new DecimalFormat("0.000"); 
-		historial = historial + df.format(culturaDeseeado) +";";
-		historial = historial + df.format(diversionDeseeado) +";";
-		historial = historial + df.format(seguridadDeseeado) +";";
-		historial = historial + df.format(educacionDeseeado) +";";
-		historial = historial + df.format(naturalezaDeseeado) +";";
-		historial = historial + df.format(populosoDeseeado) +";";
-		historial = historial + df.format(familiarDeseeado) +";";
-		historial = historial + df.format(tranquiloDeseeado) +";";
-		historial = historial + df.format(transporteDeseeado) +";";
-		historial = historial + df.format(barrioExclusivoDeseeado) +";";
+		DecimalFormat df = new DecimalFormat("0.000");
+		historial = historial + df.format(culturaDeseado) +";";
+		historial = historial + df.format(diversionDeseado) +";";
+		historial = historial + df.format(seguridadDeseado) +";";
+		historial = historial + df.format(educacionDeseado) +";";
+		historial = historial + df.format(naturalezaDeseado) +";";
+		historial = historial + df.format(populosoDeseado) +";";
+		historial = historial + df.format(familiarDeseado) +";";
+		historial = historial + df.format(tranquiloDeseado) +";";
+		historial = historial + df.format(transporteDeseado) +";";
+		historial = historial + df.format(barrioExclusivoDeseado) +";";
 		historial = historial + df.format(costoDeseado) +"\r\n";
 		
 	}
@@ -88,17 +88,17 @@ public class Agente {
 		opinion.respuesta = 0;
 		opinion.setZona(zona);
 		
-		double dif = Math.pow((barrioExclusivoDeseeado - zona.barrioExclusivo) * importanciaBarrioExclusivo,2);
+		double dif = Math.pow((barrioExclusivoDeseado - zona.barrioExclusivo) * importanciaBarrioExclusivo,2);
 		dif += Math.pow((costoDeseado - zona.costo) * importanciaCosto,2);
-		dif += Math.pow((culturaDeseeado - zona.cultura) * importanciaCultura,2);
-		dif += Math.pow((diversionDeseeado - zona.diversion) * importanciaDiversion,2);
-		dif += Math.pow((educacionDeseeado - zona.educacion) * importanciaEducacion,2);
-		dif += Math.pow((familiarDeseeado - zona.familiar) * importanciaFamiliar,2);
-		dif += Math.pow((naturalezaDeseeado - zona.naturaleza) * importanciaNaturaleza,2);
-		dif += Math.pow((populosoDeseeado - zona.populoso) * importanciaPopuloso,2);
-		dif += Math.pow((seguridadDeseeado - zona.seguridad) * importanciaSeguridad,2);
-		dif += Math.pow((tranquiloDeseeado - zona.tranquilo) * importanciaTranquilo,2);
-		dif += Math.pow((transporteDeseeado - zona.transporte) * importanciaTransporte,2);
+		dif += Math.pow((culturaDeseado - zona.cultura) * importanciaCultura,2);
+		dif += Math.pow((diversionDeseado - zona.diversion) * importanciaDiversion,2);
+		dif += Math.pow((educacionDeseado - zona.educacion) * importanciaEducacion,2);
+		dif += Math.pow((familiarDeseado - zona.familiar) * importanciaFamiliar,2);
+		dif += Math.pow((naturalezaDeseado - zona.naturaleza) * importanciaNaturaleza,2);
+		dif += Math.pow((populosoDeseado - zona.populoso) * importanciaPopuloso,2);
+		dif += Math.pow((seguridadDeseado - zona.seguridad) * importanciaSeguridad,2);
+		dif += Math.pow((tranquiloDeseado - zona.tranquilo) * importanciaTranquilo,2);
+		dif += Math.pow((transporteDeseado - zona.transporte) * importanciaTransporte,2);
 		
 		opinion.respuesta = 100-dif; 
 		return opinion;
@@ -135,23 +135,29 @@ public class Agente {
 		return elementos;
 	}
 
+	public double aprender(double valorDeseado,double valorZona,double importancia){
+		
+		double coeficienteAtributo = coeficienteDeAprendizaje * (1.0-importancia);
+		
+		double nuevoValor = valorDeseado*(1.0-coeficienteAtributo)+valorZona*coeficienteAtributo;
+		return nuevoValor;
+	}
+	
 	public void aprender(Ciudad ciudad) {
 		
 		for(Zona zona : ciudad){
-			barrioExclusivoDeseeado = barrioExclusivoDeseeado*(1.0-coeficienteDeAprendizaje)+zona.barrioExclusivo*coeficienteDeAprendizaje;
-			costoDeseado = costoDeseado*(1.0-coeficienteDeAprendizaje)+zona.costo*coeficienteDeAprendizaje;
-			culturaDeseeado = culturaDeseeado*(1.0-coeficienteDeAprendizaje)+zona.cultura*coeficienteDeAprendizaje;
-			diversionDeseeado = diversionDeseeado*(1.0-coeficienteDeAprendizaje)+zona.diversion*coeficienteDeAprendizaje;
-			educacionDeseeado = educacionDeseeado*(1.0-coeficienteDeAprendizaje)+zona.educacion*coeficienteDeAprendizaje;
-			familiarDeseeado = familiarDeseeado*(1.0-coeficienteDeAprendizaje)+zona.familiar*coeficienteDeAprendizaje;
-			naturalezaDeseeado = naturalezaDeseeado*(1.0-coeficienteDeAprendizaje)+zona.naturaleza*coeficienteDeAprendizaje;
-			populosoDeseeado = populosoDeseeado*(1.0-coeficienteDeAprendizaje)+zona.populoso*coeficienteDeAprendizaje;
-			seguridadDeseeado = seguridadDeseeado*(1.0-coeficienteDeAprendizaje)+zona.seguridad*coeficienteDeAprendizaje;
-			tranquiloDeseeado = tranquiloDeseeado*(1.0-coeficienteDeAprendizaje)+zona.tranquilo*coeficienteDeAprendizaje;
-			transporteDeseeado = transporteDeseeado*(1.0-coeficienteDeAprendizaje)+zona.transporte*coeficienteDeAprendizaje;	
-			
+			barrioExclusivoDeseado= aprender(barrioExclusivoDeseado,zona.barrioExclusivo,importanciaBarrioExclusivo);
+			costoDeseado= aprender(costoDeseado,zona.costo,importanciaCosto);
+			culturaDeseado= aprender(culturaDeseado,zona.cultura,importanciaCultura);
+			diversionDeseado= aprender(diversionDeseado,zona.diversion,importanciaDiversion);
+			educacionDeseado= aprender(educacionDeseado,zona.educacion,importanciaEducacion);
+			familiarDeseado= aprender(familiarDeseado,zona.familiar,importanciaFamiliar);
+			naturalezaDeseado= aprender(naturalezaDeseado,zona.naturaleza,importanciaNaturaleza);
+			populosoDeseado= aprender(populosoDeseado,zona.populoso,importanciaPopuloso);
+			seguridadDeseado= aprender(seguridadDeseado,zona.seguridad,importanciaSeguridad);
+			tranquiloDeseado= aprender(tranquiloDeseado,zona.tranquilo,importanciaTranquilo);
+			transporteDeseado= aprender(transporteDeseado,zona.transporte,importanciaTransporte);	
 		}
-
 	}
 	
 	public String getHistorial(){
