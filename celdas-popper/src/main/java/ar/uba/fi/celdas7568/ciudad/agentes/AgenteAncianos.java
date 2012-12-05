@@ -31,7 +31,8 @@ public class AgenteAncianos extends Agente{
 		importanciaTranquilo = 0.9;
 		importanciaTransporte = 0.1;
 		
-		coeficienteDeAprendizaje = 0.01;
+		coeficienteDeAprendizaje = 0.005;
+		inicializar();
 	}
 
 }

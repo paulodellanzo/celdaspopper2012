@@ -9,6 +9,18 @@ import com.google.common.collect.Lists;
 public class Agente {
 	
 	public double coeficienteDeAprendizaje;
+
+	public double culturaDeseadoInicial;
+	public double diversionDeseadoInicial;
+	public double seguridadDeseadoInicial;
+	public double educacionDeseadoInicial;
+	public double naturalezaDeseadoInicial;
+	public double populosoDeseadoInicial;
+	public double familiarDeseadoInicial;
+	public double tranquiloDeseadoInicial;
+	public double transporteDeseadoInicial;
+	public double barrioExclusivoDeseadoInicial;
+	public double costoDeseadoInicial;
 	
 	public double culturaDeseado;
 	public double diversionDeseado;
@@ -38,6 +50,22 @@ public class Agente {
 	public double min;
 	
 	String historial = "";
+	
+
+	protected void inicializar(){
+
+		culturaDeseadoInicial = culturaDeseado;
+		diversionDeseadoInicial = diversionDeseado;
+		seguridadDeseadoInicial = seguridadDeseado;
+		educacionDeseadoInicial = educacionDeseado;
+		naturalezaDeseadoInicial = naturalezaDeseado;
+		populosoDeseadoInicial = populosoDeseado;
+		familiarDeseadoInicial = familiarDeseado;
+		tranquiloDeseadoInicial = tranquiloDeseado;
+		transporteDeseadoInicial = transporteDeseado;
+		barrioExclusivoDeseadoInicial = barrioExclusivoDeseado;
+		costoDeseadoInicial = costoDeseado;
+	}
 	
 	private void grabarHistorial() {
 		if(historial == ""){
@@ -135,10 +163,14 @@ public class Agente {
 		return elementos;
 	}
 
-	public double aprender(double valorDeseado,double valorZona,double importancia){
+	public double aprender(double valorDeseado,double valorZona,double importancia,double valorDeseadoInicial){
+		double diferencia = Math.abs(valorDeseado-valorDeseadoInicial);
+		
+		if(importancia != 0)
+			if(diferencia > (1/importancia))
+				return valorDeseado;
 		
 		double coeficienteAtributo = coeficienteDeAprendizaje * (1.0-importancia);
-		
 		double nuevoValor = valorDeseado*(1.0-coeficienteAtributo)+valorZona*coeficienteAtributo;
 		return nuevoValor;
 	}
@@ -146,17 +178,17 @@ public class Agente {
 	public void aprender(Ciudad ciudad) {
 		
 		for(Zona zona : ciudad){
-			barrioExclusivoDeseado= aprender(barrioExclusivoDeseado,zona.barrioExclusivo,importanciaBarrioExclusivo);
-			costoDeseado= aprender(costoDeseado,zona.costo,importanciaCosto);
-			culturaDeseado= aprender(culturaDeseado,zona.cultura,importanciaCultura);
-			diversionDeseado= aprender(diversionDeseado,zona.diversion,importanciaDiversion);
-			educacionDeseado= aprender(educacionDeseado,zona.educacion,importanciaEducacion);
-			familiarDeseado= aprender(familiarDeseado,zona.familiar,importanciaFamiliar);
-			naturalezaDeseado= aprender(naturalezaDeseado,zona.naturaleza,importanciaNaturaleza);
-			populosoDeseado= aprender(populosoDeseado,zona.populoso,importanciaPopuloso);
-			seguridadDeseado= aprender(seguridadDeseado,zona.seguridad,importanciaSeguridad);
-			tranquiloDeseado= aprender(tranquiloDeseado,zona.tranquilo,importanciaTranquilo);
-			transporteDeseado= aprender(transporteDeseado,zona.transporte,importanciaTransporte);	
+			barrioExclusivoDeseado= aprender(barrioExclusivoDeseado,zona.barrioExclusivo,importanciaBarrioExclusivo,barrioExclusivoDeseadoInicial);
+			costoDeseado= aprender(costoDeseado,zona.costo,importanciaCosto,costoDeseadoInicial);
+			culturaDeseado= aprender(culturaDeseado,zona.cultura,importanciaCultura,culturaDeseadoInicial);
+			diversionDeseado= aprender(diversionDeseado,zona.diversion,importanciaDiversion,diversionDeseadoInicial);
+			educacionDeseado= aprender(educacionDeseado,zona.educacion,importanciaEducacion,educacionDeseadoInicial);
+			familiarDeseado= aprender(familiarDeseado,zona.familiar,importanciaFamiliar,familiarDeseadoInicial);
+			naturalezaDeseado= aprender(naturalezaDeseado,zona.naturaleza,importanciaNaturaleza,naturalezaDeseadoInicial);
+			populosoDeseado= aprender(populosoDeseado,zona.populoso,importanciaPopuloso,populosoDeseadoInicial);
+			seguridadDeseado= aprender(seguridadDeseado,zona.seguridad,importanciaSeguridad,seguridadDeseadoInicial);
+			tranquiloDeseado= aprender(tranquiloDeseado,zona.tranquilo,importanciaTranquilo,tranquiloDeseadoInicial);
+			transporteDeseado= aprender(transporteDeseado,zona.transporte,importanciaTransporte,transporteDeseadoInicial);	
 		}
 	}
 	
