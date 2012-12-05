@@ -6,7 +6,7 @@ public class AgentePareja extends Agente{
 
 		public AgentePareja(){
 		
-		coeficienteDeAprendizaje = 0.02;
+		coeficienteDeAprendizaje = 0.01;
 		
 		barrioExclusivoDeseado = 4;
 		costoDeseado = 3;

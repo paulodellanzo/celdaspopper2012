@@ -5,7 +5,7 @@ public class AgenteSoltero extends Agente {
 	
 	public AgenteSoltero(){
 		
-		coeficienteDeAprendizaje = 0.02;
+		coeficienteDeAprendizaje = 0.01;
 		
 		barrioExclusivoDeseado = 2;
 		costoDeseado = 3;

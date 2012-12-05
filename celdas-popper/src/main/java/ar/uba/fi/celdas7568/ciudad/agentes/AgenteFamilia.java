@@ -30,6 +30,6 @@ public class AgenteFamilia extends Agente{
 		importanciaTranquilo = 0.5;
 		importanciaTransporte = 0.2;
 		
-		coeficienteDeAprendizaje = 0.02;
+		coeficienteDeAprendizaje = 0.01;
 		}
 }
